@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { RootState } from './../../main';
 import {
   createAsyncThunk,
   createEntityAdapter,
@@ -64,7 +64,7 @@ export const userActions = userSlice.actions;
 
 const { selectAll, selectEntities } = userAdapter.getSelectors();
 
-export const getUserState = (rootState: any): UserState =>
+export const getUserState = (rootState: RootState): UserState =>
   rootState[USER_FEATURE_KEY];
 
 export const selectAllUser = createSelector(getUserState, selectAll);

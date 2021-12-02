@@ -10,8 +10,9 @@ import { Provider } from 'react-redux';
 import { USER_FEATURE_KEY, userReducer } from './app/user/user.slice';
 
 import { ORDER_FEATURE_KEY, orderReducer } from './app/order/order.slice';
+export type RootState = ReturnType<typeof store.getState>;
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     [ORDER_FEATURE_KEY]: orderReducer,
     [USER_FEATURE_KEY]: userReducer,

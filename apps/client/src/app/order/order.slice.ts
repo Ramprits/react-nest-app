@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { RootState } from './../../main';
 import {
   createAsyncThunk,
   createEntityAdapter,
@@ -10,9 +10,6 @@ import {
 
 export const ORDER_FEATURE_KEY = 'order';
 
-/*
- * Update these interfaces according to your requirements.
- */
 export interface OrderEntity {
   id: number;
 }
@@ -24,31 +21,9 @@ export interface OrderState extends EntityState<OrderEntity> {
 
 export const orderAdapter = createEntityAdapter<OrderEntity>();
 
-/**
- * Export an effect using createAsyncThunk from
- * the Redux Toolkit: https://redux-toolkit.js.org/api/createAsyncThunk
- *
- * e.g.
- * ```
- * import React, { useEffect } from 'react';
- * import { useDispatch } from 'react-redux';
- *
- * // ...
- *
- * const dispatch = useDispatch();
- * useEffect(() => {
- *   dispatch(fetchOrder())
- * }, [dispatch]);
- * ```
- */
 export const fetchOrder = createAsyncThunk(
   'order/fetchStatus',
   async (_, thunkAPI) => {
-    /**
-     * Replace this with your custom fetch call.
-     * For example, `return myApi.getOrders()`;
-     * Right now we just return an empty array.
-     */
     return Promise.resolve([]);
   }
 );
@@ -64,7 +39,6 @@ export const orderSlice = createSlice({
   reducers: {
     add: orderAdapter.addOne,
     remove: orderAdapter.removeOne,
-    // ...
   },
   extraReducers: (builder) => {
     builder
@@ -90,7 +64,7 @@ export const orderActions = orderSlice.actions;
 
 const { selectAll, selectEntities } = orderAdapter.getSelectors();
 
-export const getOrderState = (rootState: any): OrderState =>
+export const getOrderState = (rootState: RootState): OrderState =>
   rootState[ORDER_FEATURE_KEY];
 
 export const selectAllOrder = createSelector(getOrderState, selectAll);
