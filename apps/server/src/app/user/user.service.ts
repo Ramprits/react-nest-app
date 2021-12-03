@@ -1,9 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly eventRepository: Repository<UserEntity>
+  ) {}
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
