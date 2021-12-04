@@ -1,7 +1,6 @@
-import Button from '@mui/material/Button';
-
+import { Header } from '@oclm/ui-shared';
 function App() {
-  return <Button variant="contained">Hello World</Button>;
+  return <Header />;
 }
 
 export default App;

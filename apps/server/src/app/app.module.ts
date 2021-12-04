@@ -6,23 +6,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { EventModule } from './event/event.module';
-import { UserEntity } from './user/entities/user.entity';
-import { EventEntity } from './event/entities/event.entity';
+import ormConfig from '../config/orm.config';
+import ormConfigProd from '../config/orm.config.prod';
 
 @Module({
   imports: [
     UserModule,
     EventModule,
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: '127.0.0.1',
-      port: 5432,
-      database: 'ecom',
-      username: 'postgres',
-      password: 'plumtree',
-      entities: [UserEntity, EventEntity],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [ormConfig],
+      expandVariables: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      useFactory:
+        process.env.NODE_ENV !== 'production' ? ormConfig : ormConfigProd,
     }),
   ],
   controllers: [AppController],
