@@ -12,12 +12,13 @@ export class EventService {
     @InjectRepository(EventEntity)
     private readonly eventRepository: Repository<EventEntity>
   ) {}
-  create(createEventDto: CreateEventDto) {
-    return 'This action adds a new event';
+
+  async create(createEventDto: CreateEventDto): Promise<EventEntity> {
+    return await this.eventRepository.save(createEventDto);
   }
 
-  findAll() {
-    return `This action returns all event`;
+  async findAll(): Promise<EventEntity[]> {
+    return await this.eventRepository.find({ loadEagerRelations: false });
   }
 
   findOne(id: number) {

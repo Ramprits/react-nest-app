@@ -4,8 +4,8 @@
     {
       "previewLimit": 50,
       "driver": "SQLite",
-      "database": "${workspaceFolder:oclm}/inventory.db",
-      "name": "inventory"
+      "name": "inventory",
+      "database": "${workspaceFolder:oclm}/inventory"
     }
   ],
   "sqltools.useNodeRuntime": true
