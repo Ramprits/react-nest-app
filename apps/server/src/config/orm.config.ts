@@ -1,6 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { EventEntity } from '../app/event/entities/event.entity';
+import { OrderEntity } from '../app/order/entities/order.entity';
 import { UserEntity } from '../app/user/entities/user.entity';
 import { AttendeeEntity } from './../app/event/entities/attendee.entity';
 
@@ -9,7 +10,7 @@ export default registerAs(
   (): TypeOrmModuleOptions => ({
     type: 'sqlite',
     database: 'inventory',
-    entities: [UserEntity, EventEntity, AttendeeEntity],
+    entities: [UserEntity, EventEntity, AttendeeEntity, OrderEntity],
     synchronize: true,
   })
 );

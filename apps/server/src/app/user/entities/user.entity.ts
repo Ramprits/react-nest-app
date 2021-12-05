@@ -7,10 +7,21 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+export enum UserRole {
+  USER = 'user',
+  SUPERVISOR = 'supervisor',
+  ADMIN = 'admin',
+  COMMUNITY = 'community',
+  FIELDAGENT = 'fieldAgent',
+}
+
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({ type: 'varchar', name: 'user_name', unique: true })
+  userName: string;
 
   @Column({ type: 'varchar', name: 'first_name' })
   firstName: string;
@@ -24,7 +35,14 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'varchar', name: 'password' })
   password: string;
 
-  @Column({ type: 'boolean', name: 'active' })
+  @Column({
+    type: 'text',
+    enum: UserRole,
+    default: UserRole.USER,
+  })
+  role: UserRole;
+
+  @Column({ type: 'boolean', name: 'active', default: true })
   active: boolean;
 
   @CreateDateColumn({ name: 'created_at' })
