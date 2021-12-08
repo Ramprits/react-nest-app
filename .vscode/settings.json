@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["ecom", "nestjs", "nrwl", "plumtree", "typeorm"],
+  "cSpell.words": [
+    "cssmodule",
+    "ecom",
+    "nestjs",
+    "nrwl",
+    "plumtree",
+    "typeorm"
+  ],
   "sqltools.connections": [
     {
       "previewLimit": 50,
